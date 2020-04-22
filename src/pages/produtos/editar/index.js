@@ -14,8 +14,8 @@ export default function Editar(){
             setItem(x)
         }).catch(()=>{
             history.push("/lista-produtos")
-        }, [id])
-    })
+        })
+    }, [id])
 
     const salvar = (event)=>{
         alterar(item).then(()=>{
