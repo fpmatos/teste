@@ -1,0 +1,22 @@
+.lista{
+    background-color: beige;
+    width: 100%;
+    margin: auto;
+    height: 100vh;
+}
+
+.lista-header{
+    background-color: #ddd
+}
+
+.lista table{
+    background-color: white;
+}
+
+.lista table tr{
+    border: 1px solid gray;
+}
+
+.lista table tr td{
+    border: 1px solid gray;
+}
