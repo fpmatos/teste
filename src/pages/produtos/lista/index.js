@@ -37,6 +37,7 @@ export default function Lista(){
                 <h3>Lista de Produtos</h3>
             </div>
             <table className="container my-4" style={{width:"80%"}}>
+                <thead>
                 <tr className="font-weight-bold text-center lista-header">
                   <td>NOME</td>
                   <td>TIPO</td>
@@ -44,10 +45,11 @@ export default function Lista(){
                   <td>CODIGO</td>
                   <td>EDIÇÃO</td>
                 </tr>
-                
-                {item.map((x)=>{
+                </thead>
+                <tbody>
+                {item.map((x, i)=>{
                     return(
-                        <tr>
+                        <tr key={i}>
                             <td> {x.nome} </td>
                             <td> {x.tipo} </td>
                             <td> {x.valor} </td>
@@ -56,6 +58,7 @@ export default function Lista(){
                         </tr>
                     )
                 })}
+                </tbody>
             </table>
         </div>
     )
