@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-export default ({id, nome, tipo, valor, codigo, onDelete}) => {
-    
+export default ({id, nome, tipo, valor, codigo, onDelete}) => {    
     return  <tr>
         <td> {nome} </td>
         <td> {tipo} </td>

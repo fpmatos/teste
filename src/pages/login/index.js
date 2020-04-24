@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "./estilo.css"
 import {authUser} from "../../services/authUser"
+import Message from './Message'
 
 export default function Login(){
     const [model, setModel] = useState({email:"", senha:""})
@@ -22,6 +23,12 @@ export default function Login(){
         event.preventDefault()
     }
 
+    useEffect(() => {
+        return () => {
+            console.log('Chamou o destrutor')
+        }
+    }, [])
+
     return(
         <div className="form-content d-flex">
             <form onSubmit={logar} className="mx-auto">
@@ -32,9 +39,7 @@ export default function Login(){
                 <input onChange={changeModel} type="password" name="senha" className="form-control my-2" placeholder="Digite a sua senha" />
                 
                 <button type="submit" className="btn btn-primary btn-block my-2">Logar</button>
-                <div className="text-center font-weight-bold text-primary">
-                    <span> {message} </span>
-                </div>
+                <Message message={message}/>
             </form>
         </div>
     )
