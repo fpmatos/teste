@@ -26,8 +26,8 @@ export const alterar = (item)=>{
     return Promise.resolve()
 }
 
-export const retornarItem = (id)=>{
-   const itemToEdit = dbProduct.find(e=>e.id === +id)
+export const retornarItem = (_idProd)=>{
+   const itemToEdit = dbProduct.find(e=>e.id === +_idProd)
 
    if(itemToEdit){
        return Promise.resolve(itemToEdit)

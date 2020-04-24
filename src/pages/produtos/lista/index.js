@@ -3,32 +3,41 @@ import {retornarTodos} from "../../../services/productService"
 import "./estilo.css"
 import {removeItem} from "../../../services/productService"
 import { useHistory } from "react-router-dom"
+import ListItem from "./ListItem"
 
 
 export default function Lista(){
     const history = useHistory()
-    const [item, setItem] = useState([])
+    const [itens, setItens] = useState([{nome: 'teste 1', id: 1, tipo: 'tipo 1', valor: '33434', codigo: 'codigo'}, {nome: 'teste 2', id: 2}])
     
-    useEffect(()=>{
-        retornarTodos().then((x)=>{
-            setItem(x)
-        },[item])
-    })
+    // useEffect(()=>{
+
+    //     retornarTodos().then((x)=>{
+    //         setItens(x)
+    //     }).catch(e => {
+    //         console.log('deu erro no carregamento da listagem')
+    //     })
+
+    // }, [])
 
     const deleteitem = (codigo)=>{
-        removeItem(codigo).then(()=>{
-            setItem((state)=>{
-                const newList = [...state]
-                const indexToDelete = item.findIndex(e=>e.codigo===codigo)
-                newList.splice(indexToDelete, 1)
-                return (newList)
-            })
+        setItens((state)=>{
+            const newList = [...state]
+            const indexToDelete = itens.findIndex(e=>e.codigo===codigo)
+            newList.splice(indexToDelete, 1)
+            return (newList)
         })
-
     }
     
     const editarItem = (item)=>{
         history.push(`/editar-produtos/${item}`)
+    }
+
+    const teste = (id) => {
+        console.log('funcao chamada antes do click, ID:', id)
+        return () => {
+            console.log('funcao chamada pelo Click - ID:', id)
+        }
     }
 
     return(
@@ -47,15 +56,9 @@ export default function Lista(){
                 </tr>
                 </thead>
                 <tbody>
-                {item.map((x, i)=>{
+                {itens.map((x, i)=>{
                     return(
-                        <tr key={i}>
-                            <td> {x.nome} </td>
-                            <td> {x.tipo} </td>
-                            <td> {x.valor} </td>
-                            <td> {x.codigo} </td>
-                            <td> <button onClick={()=>editarItem(x.id)} className="btn btn-primary btn-sm">Editar</button><button onClick={()=>deleteitem(x.codigo)} className='btn btn-danger btn-sm'>Excluir</button> </td>
-                        </tr>
+                        <ListItem {...x} onDelete={deleteitem}/>
                     )
                 })}
                 </tbody>

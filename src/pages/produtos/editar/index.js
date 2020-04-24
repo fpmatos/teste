@@ -4,12 +4,13 @@ import { useParams, useHistory } from "react-router-dom"
 import {alterar} from "../../../services/productService"
 import "./estilo.css"
 
-export default function Editar(){
+export default function Editar() {
+    
     let {id} = useParams()
     const history = useHistory()
     const [item, setItem] = useState({nome:"", tipo:"", valor:"", codigo:""})
 
-    useEffect(()=>{
+    useEffect(()=> {
         retornarItem(id).then((x)=>{
             setItem(x)
         }).catch(()=>{
@@ -23,9 +24,7 @@ export default function Editar(){
         })
 
         event.preventDefault()
-    }
-
-   
+    }   
 
     const changeModel = ({target})=>{
         setItem((state)=>{
